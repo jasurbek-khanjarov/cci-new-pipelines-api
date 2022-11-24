@@ -26,7 +26,7 @@ jobs:
       - run: echo "Initial run"
       - when:
           condition:
-            equal: [ "true", pipeline.parameters.initial-workflow  >> ]
+            equal: [ "true", << pipeline.parameters.initial-workflow  >> ]
           steps:
             - checkout
             - continuation/continue:
@@ -34,7 +34,7 @@ jobs:
                 configuration_path: .circleci/initial-config.yml
       - when:
           condition:
-            equal: [ "true", pipeline.parameters.new-pipileine-a  >> ]
+            equal: [ "true", << pipeline.parameters.new-pipileine-a  >> ]
           steps:
             - checkout
             - continuation/continue:
