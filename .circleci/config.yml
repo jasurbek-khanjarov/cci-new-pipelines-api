@@ -1,5 +1,6 @@
 version: 2.1
-setup: true
+
+setup: << pipeline.parameters.run-setup >>
 
 parameters:
   initial-workflow:
@@ -14,6 +15,10 @@ parameters:
   new-pipeline-c:
     type: boolean
     default: false
+  run-setup:
+    description: Whether it is a setup workflow or a continuation
+    type: boolean
+    default: true
 
 orbs:
   continuation: circleci/continuation@0.2.0
