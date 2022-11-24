@@ -23,6 +23,7 @@ jobs:
     docker:
       - image: cimg/base:2022.09
     steps:
+      - run: echo "Initial run"
       - when:
           condition:
             equal: [ "true", pipeline.parameters.initial-workflow  >> ]
