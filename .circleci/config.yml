@@ -1,0 +1,48 @@
+version: 2.1
+setup: true
+
+parameters:
+  initial-workflow:
+    type: boolean
+    default: true
+  new-pipileine-a
+    type: boolean
+    default: false
+  new-pipeline-b
+    type: boolean
+    default: false
+  new-pipeline-c
+    type: boolean
+    default: false
+
+orbs:
+  continuation: circleci/continuation@0.2.0
+  
+jobs:
+  setup:
+    executor: continuation/default
+    steps:
+      - continuation/continue:
+          parameters: '{}'
+          configuration_path: configs/initial_config.yml
+  setup-deploy-dev:
+    executor: continuation/default
+    steps:
+      - continuation/continue:
+          parameters: '{}'
+          configuration_path: configs/dev_config.yml
+      
+workflows:
+  setup-workflow:
+    when:
+      and:
+        - equal: [main, << pipeline.git.branch >>]
+    jobs:
+      - setup
+  setup-deploy-dev:
+    when:
+      and:
+        - not:
+            equal: [main, << pipeline.git.branch >>]
+    jobs:
+      - deploy-dev-setup
