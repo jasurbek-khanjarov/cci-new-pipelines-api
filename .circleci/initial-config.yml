@@ -25,7 +25,7 @@ jobs:
 workflows:
 
   run-initial-workflow:
-    when: << pipeline.parameters.deploy-android >>
+    when: << pipeline.parameters.initial-workflow >>
     jobs:
       - build
       
