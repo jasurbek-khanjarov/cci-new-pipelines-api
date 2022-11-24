@@ -44,7 +44,7 @@ jobs:
       - run: node --version
 workflows:
   run-initial-workflow:
-    # when: << pipeline.parameters.initial-workflow >>
+    when: << pipeline.parameters.initial-workflow >>
     jobs:
       - build
       - common-test
