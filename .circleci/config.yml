@@ -20,8 +20,7 @@ orbs:
   
 jobs:
   setup:
-    docker:
-      - image: cimg/base:2022.09
+    executor: continuation/default
     steps:
       - run: echo "Initial run"
       - when:
