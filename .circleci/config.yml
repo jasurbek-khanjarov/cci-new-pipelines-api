@@ -5,13 +5,13 @@ parameters:
   initial-workflow:
     type: boolean
     default: true
-  new-pipileine-a
+  new-pipileine-a:
     type: boolean
     default: false
-  new-pipeline-b
+  new-pipeline-b:
     type: boolean
     default: false
-  new-pipeline-c
+  new-pipeline-c:
     type: boolean
     default: false
 
