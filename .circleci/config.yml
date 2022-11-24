@@ -22,10 +22,22 @@ jobs:
   setup:
     executor: continuation/default
     steps:
-      - checkout
-      - continuation/continue:
-          parameters: '{}'
-          configuration_path: .circleci/initial-config.yml
+      - when:
+          condition:
+            equal: [ "true", pipeline.parameters.initial-workflow  >> ]
+          steps:
+            - checkout
+            - continuation/continue:
+                parameters: '{}'
+                configuration_path: .circleci/initial-config.yml
+      - when:
+          condition:
+            equal: [ "true", pipeline.parameters.new-pipileine-a  >> ]
+          steps:
+            - checkout
+            - continuation/continue:
+                parameters: '{}'
+                configuration_path: .circleci/pipeline-a-config.yml
   setup-deploy-dev:
     executor: continuation/default
     steps:

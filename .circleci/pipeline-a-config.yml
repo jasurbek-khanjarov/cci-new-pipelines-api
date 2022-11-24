@@ -1,0 +1,26 @@
+version: 2.1
+
+parameters:
+  initial-workflow:
+    type: boolean
+    default: true
+  new-pipileine-a:
+    type: boolean
+    default: false
+  new-pipeline-b:
+    type: boolean
+    default: false
+
+jobs:
+  build-pipeline-a:
+    docker:
+      - image: cimg/node:19.1.0
+    steps:
+      - checkout
+      - run: node --version
+workflows:
+  run-initial-workflow:
+    when: << pipeline.parameters.new-pipileine-a >>
+    jobs:
+      - build
+      
