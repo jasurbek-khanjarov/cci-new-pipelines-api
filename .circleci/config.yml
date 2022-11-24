@@ -22,12 +22,14 @@ jobs:
   setup:
     executor: continuation/default
     steps:
+      - checkout
       - continuation/continue:
           parameters: '{}'
           configuration_path: configs/initial_config.yml
   setup-deploy-dev:
     executor: continuation/default
     steps:
+      - checkout
       - continuation/continue:
           parameters: '{}'
           configuration_path: configs/dev_config.yml
