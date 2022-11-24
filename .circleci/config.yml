@@ -45,4 +45,4 @@ workflows:
         - not:
             equal: [main, << pipeline.git.branch >>]
     jobs:
-      - deploy-dev-setup
+      - setup-deploy-dev
