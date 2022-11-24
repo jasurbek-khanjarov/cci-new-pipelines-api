@@ -50,7 +50,7 @@ workflows:
       - common-test
       - continue-with-new-api-a:
           requires:
-            common-test
+            - common-test
       # - continue-with-new-api-b:
       #     requires:
       #       common-test
