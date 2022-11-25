@@ -19,7 +19,6 @@ jobs:
     executor: continuation/default
     steps:
       - checkout
-      - run: pwd
       - run:
           name: Generate Pipeline initial-config.yml file
           command: |
