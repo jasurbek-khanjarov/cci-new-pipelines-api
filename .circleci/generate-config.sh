@@ -5,7 +5,7 @@ NODE_SUB='nodejs'
 # config_content=`cat ./default_config.yml`
 if [[ $RUN_TYPE == "initial_run" ]]
 then
-cat << EOF > ./circleci/generated-config.yml
+cat << EOF > .circleci/generated-config.yml
 
 version: 2.1
 jobs:
@@ -28,7 +28,7 @@ curl --request POST \
 --data '{"branch":"main", "parameters":{"run-setup": true, "run-type": "secondary_run"}}'
 elif [[ $RUN_TYPE == "secondary_run" ]]
 then
-cat << EOF > ./circleci/generated-config.yml
+cat << EOF > .circleci/generated-config.yml
 
 version: 2.1
 jobs:
