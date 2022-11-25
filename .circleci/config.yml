@@ -3,12 +3,9 @@ version: 2.1
 setup: << pipeline.parameters.run-setup >>
 
 parameters:
-  initial-workflow:
-    type: boolean
-    default: true
-  new-pipileine-a:
-    type: boolean
-    default: false
+  run-type:
+    type: string
+    default: "initial_run"
   run-setup:
     description: Whether it is a setup workflow or a continuation
     type: boolean
@@ -21,30 +18,16 @@ jobs:
   setup:
     executor: continuation/default
     steps:
-      - run: echo "Initial run"
-      - when:
-          condition: << pipeline.parameters.initial-workflow >>
-          steps:
-            - checkout
-            - run: echo "Start Initial Pipeline"
-            - continuation/continue:
-                parameters: '{}'
-                configuration_path: .circleci/initial-config.yml
-      - when:
-          condition: << pipeline.parameters.new-pipileine-a >>
-          steps:
-            - checkout
-            - run: echo "Start Pipeline A"
-            - continuation/continue:
-                parameters: '{}'
-                configuration_path: .circleci/pipeline-a-config.yml
-  setup-deploy-dev:
-    executor: continuation/default
-    steps:
+      - checkout
+      - run:
+          name: Generate Pipeline initial-config.yml file
+          command: |
+            chmod +x ./generate-config.sh |
+            bash ./generate-config.sh "<< pipeline.parameters.run-type >>"
       - checkout
       - continuation/continue:
           parameters: '{}'
-          configuration_path: .circleci/dev-config.yml
+          configuration_path: .circleci/generated-config.yml
       
 workflows:
   setup-workflow:
@@ -53,10 +36,3 @@ workflows:
         - equal: [main, << pipeline.git.branch >>]
     jobs:
       - setup
-  setup-deploy-dev:
-    when:
-      and:
-        - not:
-            equal: [main, << pipeline.git.branch >>]
-    jobs:
-      - setup-deploy-dev
