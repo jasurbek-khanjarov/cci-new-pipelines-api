@@ -7,9 +7,10 @@ parameters:
   new-pipileine-a:
     type: boolean
     default: false
-  new-pipeline-b:
+  run-setup:
+    description: Whether it is a setup workflow or a continuation
     type: boolean
-    default: false
+    default: true
 
 jobs:
   build-pipeline-a:
