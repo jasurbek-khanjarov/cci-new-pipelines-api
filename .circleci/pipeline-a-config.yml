@@ -20,7 +20,7 @@ jobs:
       - run: node --version
 workflows:
   run-new-workflow-a:
-    when: << pipeline.parameters.new-pipileine-a >>
+    # when: << pipeline.parameters.new-pipileine-a >>
     jobs:
       - build
       
