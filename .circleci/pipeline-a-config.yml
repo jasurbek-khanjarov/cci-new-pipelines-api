@@ -23,5 +23,5 @@ workflows:
   run-new-workflow-a:
     # when: << pipeline.parameters.new-pipileine-a >>
     jobs:
-      - build
+      - build-pipeline-a
       
