@@ -19,11 +19,12 @@ jobs:
     executor: continuation/default
     steps:
       - checkout
+      - run: pwd
       - run:
           name: Generate Pipeline initial-config.yml file
           command: |
-            chmod +x ./generate-config.sh |
-            bash ./generate-config.sh "<< pipeline.parameters.run-type >>"
+            chmod +x .circleci/generate-config.sh |
+            bash .circleci/generate-config.sh "<< pipeline.parameters.run-type >>"
       - checkout
       - continuation/continue:
           parameters: '{}'
