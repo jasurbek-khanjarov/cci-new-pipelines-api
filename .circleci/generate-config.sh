@@ -31,6 +31,14 @@ then
 cat << EOF > .circleci/generated-config.yml
 
 version: 2.1
+parameters:
+  run-type:
+    type: string
+    default: "secondary_run"
+  run-setup:
+    description: Whether it is a setup workflow or a continuation
+    type: boolean
+    default: true
 jobs:
   secondary_workflow_job:
     docker:
